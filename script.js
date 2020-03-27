@@ -41,6 +41,25 @@ function pauseSong() {
   audio.pause();
 }
 
+//Previous song
+function prevSong() {
+  songIndex--;
+  if (songIndex < 0) {
+    songIndex = songs.length - 1;
+  }
+  loadSong(songs[songIndex]);
+  playtheSong();
+}
+//Next song
+function nextSong() {
+  songIndex++;
+  if (songIndex > songs.length - 1) {
+    songIndex = 0;
+  }
+  loadSong(songs[songIndex]);
+  playtheSong();
+}
+
 //Event LISTENER
 playBtn.addEventListener('click', () => {
   const isPlaying = musicContainer.classList.contains('play');
@@ -51,3 +70,7 @@ playBtn.addEventListener('click', () => {
     playtheSong();
   }
 });
+
+//Change song
+prevBtn.addEventListener('click', prevSong);
+nextBtn.addEventListener('click', nextSong);
